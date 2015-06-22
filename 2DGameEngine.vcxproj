@@ -79,10 +79,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="aabb.h" />
+    <ClInclude Include="circle.h" />
     <ClInclude Include="display.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="input_handler.h" />
+    <ClInclude Include="intersectable.h" />
+    <ClInclude Include="rectangle.h" />
     <ClInclude Include="screen.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="sprite_renderer.h" />
