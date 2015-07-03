@@ -86,23 +86,31 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="input_handler.h" />
     <ClInclude Include="intersectable.h" />
+    <ClInclude Include="primitive_renderer.h" />
     <ClInclude Include="rectangle.h" />
     <ClInclude Include="screen.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="sprite_renderer.h" />
+    <ClInclude Include="test_screen.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="texture_region.h" />
+    <ClInclude Include="triangle.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="aabb.cpp" />
+    <ClCompile Include="circle.cpp" />
     <ClCompile Include="display.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="primitive_renderer.cpp" />
     <ClCompile Include="screen.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="spriter_renderer.cpp" />
+    <ClCompile Include="test_screen.cpp" />
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="texture_region.cpp" />
+    <ClCompile Include="triangle.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
