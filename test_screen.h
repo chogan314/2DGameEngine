@@ -5,6 +5,7 @@
 #include "primitive_renderer.h"
 #include "triangle.h"
 #include "input_handler.h"
+#include "view.h"
 
 class TestScreen : public Screen, public InputHandler
 {
@@ -24,7 +25,7 @@ public:
 private:
 	Shader shader;
 	PrimitiveRenderer renderer;
-	Triangle triangle;
+	View view;
 };
 
 #endif

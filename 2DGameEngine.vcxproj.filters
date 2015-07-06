@@ -31,6 +31,12 @@
     <Filter Include="Source Files\Test">
       <UniqueIdentifier>{f6de66fd-f88d-4da8-a601-3912afcdb7ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\UI">
+      <UniqueIdentifier>{b511564e-5d74-4b19-938a-2b8222e22425}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\UI">
+      <UniqueIdentifier>{855b448d-ed8e-45b8-82af-d104054997bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="display.h">
@@ -81,6 +87,9 @@
     <ClInclude Include="test_screen.h">
       <Filter>Header Files\Test</Filter>
     </ClInclude>
+    <ClInclude Include="view.h">
+      <Filter>Header Files\Engine\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -124,6 +133,9 @@
     </ClCompile>
     <ClCompile Include="test_screen.cpp">
       <Filter>Source Files\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="view.cpp">
+      <Filter>Source Files\Engine\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

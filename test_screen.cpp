@@ -5,14 +5,23 @@
 
 TestScreen::TestScreen(GLint width, GLint height, Game *game) : 
 	Screen(width, height, game),
-	renderer(&shader),
-	triangle(glm::vec2(200, 200),
-			 glm::vec2(250, 400),
-			 glm::vec2(300, 270))
+	renderer(&shader)
 {
 	shader.CompileFromFile("res/shaders/primitive.vs", "res/shaders/primitive.fs");
 	renderer.SetContextSize(width, height);
 	game->GetInput()->RegisterHandler(this);
+
+	view.SetPosition(glm::vec2(0, 0));
+	view.SetWidth(ABSOLUTE, width);
+	view.SetHeight(ABSOLUTE, height);
+
+	View *child = new View();
+	child->SetGravity(POSITIVE, POSITIVE);
+	child->SetWidth(PERCENT_PARENT, 0.5f);
+	child->SetHeight(FILL_PARENT, 0.0f);
+	view.AddChild(child);
+
+	view.Remeasure();
 }
 
 void TestScreen::Update(GLfloat delta)
@@ -25,21 +34,13 @@ void TestScreen::Render()
 	glClearColor(0.2f, 0.4f, 0.7f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	for (int y = 0; y < height; y++)
-	{
-		for (int x = 0; x < width; x++)
-		{
-			if (triangle.ContainsPoint(glm::vec2(x, y)))
-			{
-				renderer.DrawPoint(glm::vec2(x, y));
-			}
-		}
-	}
+	renderer.DrawRectangle(view.GetPosition(), view.GetWidth(), view.GetHeight(),
+		glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 
-	renderer.DrawTriangle(triangle.GetPointA(),
-		triangle.GetPointB(),
-		triangle.GetPointC(),
-		glm::vec4(1.0f, 0.0f, 0.0f, 0.5f));
+	View *child = view.GetChild(0);
+
+	renderer.DrawRectangle(child->GetPosition(), child->GetWidth(), child->GetHeight(),
+		glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
 }
 
 void TestScreen::onKeyDown(int key, int mods)
@@ -59,15 +60,7 @@ void TestScreen::onMouseDown(int button, int mods)
 
 void TestScreen::onMouseUp(int button, int mods)
 {
-	glm::vec2 mousePos(game->GetInput()->GetMouseX(), game->GetInput()->GetMouseY());
-	if (triangle.ContainsPoint(mousePos))
-	{
-		std::cout << "HIT" << std::endl;
-	}
-	else
-	{
-		std::cout << "MISS" << std::endl;
-	}
+
 }
 
 void TestScreen::onMouseScroll(float xOffset, float yOffset)
