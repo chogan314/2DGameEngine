@@ -2,6 +2,7 @@
 #define SCREEN_H
 
 #include <GL\glew.h>
+#include <glm\glm.hpp>
 
 class Game;
 
@@ -12,6 +13,8 @@ public:
 	virtual ~Screen() { }
 	GLint GetWidth() const;
 	GLint GetHeight() const;
+	Game *GetGame() const;
+	glm::vec2 GetMousePos() const;
 	virtual void Update(GLfloat delta) = 0;
 	virtual void Render() = 0;
 protected:

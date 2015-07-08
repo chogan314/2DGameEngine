@@ -15,12 +15,12 @@ public:
 	void Update(GLfloat delta);
 	void Render();
 
-	void onKeyDown(int key, int mods);
-	void onKeyUp(int key, int mods);
-	void onMouseDown(int button, int mods);
-	void onMouseUp(int button, int mods);
-	void onMouseScroll(float xOffset, float yOffset);
-	void onMouseMoved(float x, float y);
+	bool OnKeyDown(int key, int mods);
+	bool OnKeyUp(int key, int mods);
+	bool OnMouseDown(int button, int mods);
+	bool OnMouseUp(int button, int mods);
+	bool OnMouseScroll(float xOffset, float yOffset);
+	bool OnMouseMoved(float x, float y);
 
 private:
 	Shader shader;

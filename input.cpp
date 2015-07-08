@@ -1,6 +1,7 @@
 #include "input.h"
 #include "game.h"
 #include "input_handler.h"
+#include "screen.h"
 
 Input::Input(GLFWwindow* window) : handler(nullptr)
 {
@@ -56,7 +57,7 @@ void OnKey(GLFWwindow* window, int key, int scancode, int action, int mods)
 		input->keys[key] = true;
 		if (handler)
 		{
-			handler->onKeyDown(key, mods);
+			handler->OnKeyDown(key, mods);
 		}
 	}
 	else if (action == GLFW_RELEASE)
@@ -64,7 +65,7 @@ void OnKey(GLFWwindow* window, int key, int scancode, int action, int mods)
 		input->keys[key] = false;
 		if (handler)
 		{
-			handler->onKeyUp(key, mods);
+			handler->OnKeyUp(key, mods);
 		}
 	}
 }
@@ -79,7 +80,7 @@ void OnMouseMove(GLFWwindow* window, double x, double y)
 	input->mouseY = (float) y;
 	if (handler)
 	{
-		handler->onMouseMoved((float) x, (float) y);
+		handler->OnMouseMoved((float) x, (float) y);
 	}
 }
 
@@ -94,7 +95,7 @@ void OnMouseButton(GLFWwindow* window, int button, int action, int mods)
 		input->mouseButtons[button] = true;
 		if (handler)
 		{
-			handler->onMouseDown(button, mods);
+			handler->OnMouseDown(button, mods);
 		}
 	}
 	else if (action == GLFW_RELEASE)
@@ -102,7 +103,7 @@ void OnMouseButton(GLFWwindow* window, int button, int action, int mods)
 		input->mouseButtons[button] = false;
 		if (handler)
 		{
-			handler->onMouseUp(button, mods);
+			handler->OnMouseUp(button, mods);
 		}
 	}
 }
@@ -115,6 +116,6 @@ void OnMouseScroll(GLFWwindow* window, double xOffset, double yOffset)
 
 	if (handler)
 	{
-		handler->onMouseScroll((float) xOffset, (float) yOffset);
+		handler->OnMouseScroll((float) xOffset, (float) yOffset);
 	}
 }

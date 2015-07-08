@@ -5,21 +5,25 @@
 
 TestScreen::TestScreen(GLint width, GLint height, Game *game) : 
 	Screen(width, height, game),
-	renderer(&shader)
+	renderer(&shader),
+	view(this)
 {
 	shader.CompileFromFile("res/shaders/primitive.vs", "res/shaders/primitive.fs");
 	renderer.SetContextSize(width, height);
 	game->GetInput()->RegisterHandler(this);
 
 	view.SetPosition(glm::vec2(0, 0));
-	view.SetWidth(ABSOLUTE, width);
-	view.SetHeight(ABSOLUTE, height);
+	view.SetWidth(EXPANSION_ABSOLUTE, width);
+	view.SetHeight(EXPANSION_ABSOLUTE, height);
 
-	View *child = new View();
-	child->SetGravity(POSITIVE, POSITIVE);
-	child->SetWidth(PERCENT_PARENT, 0.5f);
-	child->SetHeight(FILL_PARENT, 0.0f);
+	View *child = new View(this);
+	child->SetGravity(GRAVITY_NEGATIVE, GRAVITY_CENTER);
+	child->SetWidth(EXPANSION_PERCENT_PARENT, 0.5f);
+	child->SetHeight(EXPANSION_PERCENT_PARENT, 0.5f);
+	child->SetMargins(MARGIN_LEFT, MARGIN_PERCENT, 0.1f);
 	view.AddChild(child);
+
+	view.SetOnMouseDownListener([](int key, int mods) { std::cout << "Click!!!" << std::endl; return false; });
 
 	view.Remeasure();
 }
@@ -43,32 +47,32 @@ void TestScreen::Render()
 		glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
 }
 
-void TestScreen::onKeyDown(int key, int mods)
+bool TestScreen::OnKeyDown(int key, int mods)
 {
-
+	return view.OnKeyDown(key, mods);
 }
 
-void TestScreen::onKeyUp(int key, int mods)
+bool TestScreen::OnKeyUp(int key, int mods)
 {
-
+	return view.OnKeyUp(key, mods);
 }
 
-void TestScreen::onMouseDown(int button, int mods)
+bool TestScreen::OnMouseDown(int button, int mods)
 {
-
+	return view.OnMouseDown(button, mods);
 }
 
-void TestScreen::onMouseUp(int button, int mods)
+bool TestScreen::OnMouseUp(int button, int mods)
 {
-
+	return view.OnMouseUp(button, mods);
 }
 
-void TestScreen::onMouseScroll(float xOffset, float yOffset)
+bool TestScreen::OnMouseScroll(float xOffset, float yOffset)
 {
-
+	return view.OnMouseScroll(xOffset, yOffset);
 }
 
-void TestScreen::onMouseMoved(float x, float y)
+bool TestScreen::OnMouseMoved(float x, float y)
 {
-
+	return view.OnMouseMoved(x, y);
 }
