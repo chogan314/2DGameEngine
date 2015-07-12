@@ -72,7 +72,6 @@ public:
 	bool OnMouseUp(int button, int mods);
 	bool OnMouseScroll(float xOffset, float yOffset);
 	bool OnMouseMoved(float x, float y);
-	bool OnClick(int button, int mods);
 
 	void SetOnKeyDownListener(KeyEventListener listener);
 	void SetOnKeyUpListener(KeyEventListener listener);
@@ -81,6 +80,8 @@ public:
 	void SetOnMouseScrollListener(MouseScrollEventListener listener);
 	void SetOnMouseMovedListener(MouseMovedEventListener listener);
 	void SetOnClickListener(MouseButtonEventListener listener);
+	void SetOnMouseEnterListener(MouseMovedEventListener listener);
+	void SetOnMouseExitListener(MouseMovedEventListener listener);
 
 private:
 	struct Gravity
@@ -273,8 +274,11 @@ private:
 	MouseScrollEventListener onMouseScrollListener = nullptr;
 	MouseMovedEventListener onMouseMovedListener = nullptr;
 	MouseButtonEventListener onClickListener = nullptr;
+	MouseMovedEventListener onEnterListener = nullptr;
+	MouseMovedEventListener onExitListener = nullptr;
 
 	bool pressedDown = false;
+	bool containsMouse = false;
 };
 
 #endif

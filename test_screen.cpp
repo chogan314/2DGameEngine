@@ -6,10 +6,19 @@
 TestScreen::TestScreen(GLint width, GLint height, Game *game) : 
 	Screen(width, height, game),
 	renderer(&shader),
+	textRenderer(&textShader, width, height),
+	spriteRenderer(&spriteShader),
+	font("res/fonts/arial.ttf", 48),
 	view(this)
 {
 	shader.CompileFromFile("res/shaders/primitive.vs", "res/shaders/primitive.fs");
 	renderer.SetContextSize(width, height);
+
+	textShader.CompileFromFile("res/shaders/text.vs", "res/shaders/text.fs");
+
+	spriteShader.CompileFromFile("res/shaders/sprite.vs", "res/shaders/sprite.fs");
+	white.LoadFromFile("res/textures/white.png");
+
 	game->GetInput()->RegisterHandler(this);
 
 	view.SetPosition(glm::vec2(0, 0));
@@ -24,13 +33,15 @@ TestScreen::TestScreen(GLint width, GLint height, Game *game) :
 	view.AddChild(child);
 
 	view.SetOnMouseDownListener([](int key, int mods) { std::cout << "Click!!!" << std::endl; return false; });
+	child->SetOnMouseEnterListener([](float x, float y) { std::cout << "ENTER" << std::endl; return false; });
+	child->SetOnMouseExitListener([](float x, float y) { std::cout << "EXIT" << std::endl; return false; });
 
 	view.Remeasure();
 }
 
 void TestScreen::Update(GLfloat delta)
 {
-
+	timePassed += delta;
 }
 
 void TestScreen::Render()
@@ -38,13 +49,22 @@ void TestScreen::Render()
 	glClearColor(0.2f, 0.4f, 0.7f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	renderer.DrawRectangle(view.GetPosition(), view.GetWidth(), view.GetHeight(),
-		glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+	glm::mat4 projection = glm::ortho(0.0f, (float) width, (float) height, 0.0f);
+	spriteShader.SetMatrix4("projection", projection);
 
 	View *child = view.GetChild(0);
 
+	spriteRenderer.Draw(child->GetPosition(), child->GetWidth(), child->GetHeight(), 0.0f, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+
+	/*renderer.DrawRectangle(view.GetPosition(), view.GetWidth(), view.GetHeight(),
+		glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+
+	
+
 	renderer.DrawRectangle(child->GetPosition(), child->GetWidth(), child->GetHeight(),
 		glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
+
+	textRenderer.RenderText(font, "This is sample text", 250.0f, 300.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f));*/
 }
 
 bool TestScreen::OnKeyDown(int key, int mods)

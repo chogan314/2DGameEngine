@@ -3,9 +3,11 @@
 
 #include "screen.h"
 #include "primitive_renderer.h"
+#include "text_renderer.h"
 #include "triangle.h"
 #include "input_handler.h"
 #include "view.h"
+#include "sprite_renderer.h"
 
 class TestScreen : public Screen, public InputHandler
 {
@@ -25,7 +27,14 @@ public:
 private:
 	Shader shader;
 	PrimitiveRenderer renderer;
+	Shader textShader;
+	TextRenderer textRenderer;
+	Shader spriteShader;
+	SpriteRenderer spriteRenderer;
+	Texture white;
+	Font font;
 	View view;
+	float timePassed = 0.0f;
 };
 
 #endif

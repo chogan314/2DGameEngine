@@ -58,7 +58,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glew32.lib;glew32s.lib;glfw3.lib;SOIL.lib;opengl32.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;glew32s.lib;glfw3.lib;SOIL.lib;opengl32.lib;irrKlang.lib;freetype240MT_D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -82,6 +82,7 @@
     <ClInclude Include="aabb.h" />
     <ClInclude Include="circle.h" />
     <ClInclude Include="display.h" />
+    <ClInclude Include="font.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="input_handler.h" />
@@ -94,6 +95,7 @@
     <ClInclude Include="test_screen.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="texture_region.h" />
+    <ClInclude Include="text_renderer.h" />
     <ClInclude Include="triangle.h" />
     <ClInclude Include="view.h" />
   </ItemGroup>
@@ -101,16 +103,18 @@
     <ClCompile Include="aabb.cpp" />
     <ClCompile Include="circle.cpp" />
     <ClCompile Include="display.cpp" />
+    <ClCompile Include="font.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="primitive_renderer.cpp" />
     <ClCompile Include="screen.cpp" />
     <ClCompile Include="shader.cpp" />
-    <ClCompile Include="spriter_renderer.cpp" />
+    <ClCompile Include="sprite_renderer.cpp" />
     <ClCompile Include="test_screen.cpp" />
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="texture_region.cpp" />
+    <ClCompile Include="text_renderer.cpp" />
     <ClCompile Include="triangle.cpp" />
     <ClCompile Include="view.cpp" />
   </ItemGroup>

@@ -143,10 +143,9 @@ bool View::OnKeyUp(int key, int mods)
 
 bool View::OnMouseDown(int button, int mods)
 {
-	glm::vec2 mousePos = glm::vec2(context->GetGame()->GetInput()->GetMouseX(),
-		context->GetGame()->GetInput()->GetMouseY());
+	glm::vec2 mousePos = context->GetMousePos();
 
-	if (bounds.ContainsPoint(mousePos))
+	if (containsMouse)
 	{
 		pressedDown = true;
 	}
@@ -160,7 +159,7 @@ bool View::OnMouseDown(int button, int mods)
 	for (int i = 0; i < children.size(); i++)
 	{
 
-		handled = handled || children[i]->OnMouseDown(button, mods);
+		handled = children[i]->OnMouseDown(button, mods) || handled;
 	}
 
 	return handled;
@@ -168,6 +167,16 @@ bool View::OnMouseDown(int button, int mods)
 
 bool View::OnMouseUp(int button, int mods)
 {
+	if (pressedDown && containsMouse)
+	{
+		if (onClickListener)
+		{
+			onClickListener(button, mods);
+		}
+	}
+
+	pressedDown = false;
+
 	bool handled = false;
 	if (onMouseUpListener)
 	{
@@ -197,7 +206,7 @@ bool View::OnMouseScroll(float xOffset, float yOffset)
 			break;
 		}
 
-		handled = handled || children[i]->OnMouseScroll(xOffset, yOffset);
+		handled = children[i]->OnMouseScroll(xOffset, yOffset) || handled;
 	}
 
 	return handled;
@@ -205,6 +214,26 @@ bool View::OnMouseScroll(float xOffset, float yOffset)
 
 bool View::OnMouseMoved(float x, float y)
 {
+	bool inBounds = bounds.ContainsPoint(glm::vec2(x, y));
+
+	if (inBounds && !containsMouse)
+	{
+		if (onEnterListener)
+		{
+			onEnterListener(x, y);
+		}
+	}
+
+	if (!inBounds && containsMouse)
+	{
+		if (onExitListener)
+		{
+			onExitListener(x, y);
+		}
+	}
+
+	containsMouse = inBounds;
+
 	bool handled = false;
 	if (onMouseMovedListener)
 	{
@@ -218,7 +247,7 @@ bool View::OnMouseMoved(float x, float y)
 			break;
 		}
 
-		handled = handled || children[i]->OnMouseMoved(x, y);
+		handled = children[i]->OnMouseMoved(x, y) || handled;
 	}
 
 	return handled;
@@ -257,4 +286,14 @@ void View::SetOnMouseMovedListener(MouseMovedEventListener listener)
 void View::SetOnClickListener(MouseButtonEventListener listener)
 {
 	onClickListener = listener;
+}
+
+void View::SetOnMouseEnterListener(MouseMovedEventListener listener)
+{
+	onEnterListener = listener;
+}
+
+void View::SetOnMouseExitListener(MouseMovedEventListener listener)
+{
+	onExitListener = listener;
 }

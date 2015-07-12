@@ -27,6 +27,13 @@ public:
 		GLfloat rotation = 0.0f,
 		const glm::vec4 &color = glm::vec4(1.0f));
 
+	void Draw(
+		const glm::vec2 &position,
+		GLfloat width,
+		GLfloat height,
+		GLfloat rotation = 0.0f,
+		const glm::vec4 &color = glm::vec4(1.0f));
+
 	void DrawWithRotationAroundOrigin(
 		TextureRegion &textureRegion,
 		const glm::vec2 &position,
@@ -39,6 +46,7 @@ private:
 	GLuint VAO;
 	GLuint VBO;
 	const Texture *lastTexture;
+	Texture whiteTexture;
 
 	void InitRenderData();
 };
