@@ -90,11 +90,14 @@
     <ClInclude Include="view.h">
       <Filter>Header Files\Engine\UI</Filter>
     </ClInclude>
-    <ClInclude Include="font.h">
-      <Filter>Header Files\Engine\UI</Filter>
-    </ClInclude>
     <ClInclude Include="text_renderer.h">
       <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="font.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="image_view.h">
+      <Filter>Header Files\Engine\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -143,11 +146,14 @@
     <ClCompile Include="sprite_renderer.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="font.cpp">
-      <Filter>Source Files\Engine\UI</Filter>
-    </ClCompile>
     <ClCompile Include="text_renderer.cpp">
       <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="font.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="image_view.cpp">
+      <Filter>Source Files\Engine\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

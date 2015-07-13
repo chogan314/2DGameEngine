@@ -297,3 +297,21 @@ void View::SetOnMouseExitListener(MouseMovedEventListener listener)
 {
 	onExitListener = listener;
 }
+
+void View::SetBackgroundColor(float r, float g, float b, float a)
+{
+	backgroundColor.r = r;
+	backgroundColor.g = g;
+	backgroundColor.b = b;
+	backgroundColor.a = a;
+}
+
+void View::Draw(SpriteRenderer &spriteRenderer, TextRenderer &textRenderer)
+{
+	spriteRenderer.Draw(pos, width, height, 0.0f, backgroundColor);
+
+	for (int i = 0; i < children.size(); i++)
+	{
+		children[i]->Draw(spriteRenderer, textRenderer);
+	}
+}

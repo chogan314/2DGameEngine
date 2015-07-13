@@ -45,7 +45,6 @@ private:
 	Shader &shader;
 	GLuint VAO;
 	GLuint VBO;
-	const Texture *lastTexture;
 	Texture whiteTexture;
 
 	void InitRenderData();

@@ -2,7 +2,7 @@
 #include <glm\gtc\matrix_transform.hpp>
 #include <iostream>
 
-SpriteRenderer::SpriteRenderer(Shader *shader) : shader(*shader), lastTexture(nullptr)
+SpriteRenderer::SpriteRenderer(Shader *shader) : shader(*shader)
 {
 	InitRenderData();
 	unsigned char colorData[] = { 255, 255, 255, 255 };

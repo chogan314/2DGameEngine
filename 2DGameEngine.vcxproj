@@ -84,6 +84,7 @@
     <ClInclude Include="display.h" />
     <ClInclude Include="font.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="image_view.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="input_handler.h" />
     <ClInclude Include="intersectable.h" />
@@ -105,6 +106,7 @@
     <ClCompile Include="display.cpp" />
     <ClCompile Include="font.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="image_view.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="primitive_renderer.cpp" />

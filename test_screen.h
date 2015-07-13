@@ -9,7 +9,7 @@
 #include "view.h"
 #include "sprite_renderer.h"
 
-class TestScreen : public Screen, public InputHandler
+class TestScreen : public Screen
 {
 public:
 	TestScreen(GLint width, GLint height, Game *game);
@@ -17,12 +17,12 @@ public:
 	void Update(GLfloat delta);
 	void Render();
 
-	bool OnKeyDown(int key, int mods);
+	/*bool OnKeyDown(int key, int mods);
 	bool OnKeyUp(int key, int mods);
 	bool OnMouseDown(int button, int mods);
 	bool OnMouseUp(int button, int mods);
 	bool OnMouseScroll(float xOffset, float yOffset);
-	bool OnMouseMoved(float x, float y);
+	bool OnMouseMoved(float x, float y);*/
 
 private:
 	Shader shader;
@@ -33,7 +33,6 @@ private:
 	SpriteRenderer spriteRenderer;
 	Texture white;
 	Font font;
-	View view;
 	float timePassed = 0.0f;
 };
 

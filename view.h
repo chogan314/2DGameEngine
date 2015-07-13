@@ -6,6 +6,8 @@
 #include <functional>
 #include "aabb.h"
 #include "input_handler.h"
+#include "sprite_renderer.h"
+#include "text_renderer.h"
 
 class Screen;
 
@@ -82,6 +84,10 @@ public:
 	void SetOnClickListener(MouseButtonEventListener listener);
 	void SetOnMouseEnterListener(MouseMovedEventListener listener);
 	void SetOnMouseExitListener(MouseMovedEventListener listener);
+
+	void SetBackgroundColor(float r, float g, float b, float a);
+
+	virtual void Draw(SpriteRenderer &spriteRenderer, TextRenderer &textRenderer);
 
 private:
 	struct Gravity
@@ -279,6 +285,8 @@ private:
 
 	bool pressedDown = false;
 	bool containsMouse = false;
+
+	glm::vec4 backgroundColor = glm::vec4(1.0f, 1.0f, 1.0f, 0.0f);
 };
 
 #endif
